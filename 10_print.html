@@ -1,0 +1,54 @@
+<html>
+<canvas id='gameCanvas' width=600 height=600>
+    <script>
+        window.onload=function() {
+            canvas = document.getElementById('gameCanvas');
+            canvasContext = canvas.getContext('2d');
+            drawCanvas();    
+            setInterval(function() {
+                tenPrint();
+            }, 1000/200);
+        }
+        
+        function drawCanvas() {
+            canvasContext.fillStyle='black'
+            canvasContext.fillRect(0,0,canvas.width,canvas.height);
+        }
+        function backLine(xcor, ycor) { 
+            canvasContext.beginPath();
+            canvasContext.moveTo(xcor, ycor);
+            canvasContext.lineTo(xcor+20,ycor+20);
+            canvasContext.strokeStyle = 'white';
+            canvasContext.stroke();
+        }
+        function forwardLine(xcor,ycor) {
+            canvasContext.beginPath();
+            canvasContext.moveTo(xcor+20, ycor);
+            canvasContext.lineTo(xcor,ycor+20);
+            canvasContext.strokeStyle = 'white';
+            canvasContext.stroke();            
+        }
+        function randInt() {
+            return Math.floor(Math.random()*2);
+        }
+        let n=0;
+        let z=0;
+        function tenPrint() {
+            randomNumber = randInt();
+            if (randomNumber === 0) {
+                backLine(n, z);
+            } else {
+                forwardLine(n, z);
+            }
+            n = n+20;
+            if (n === canvas.width) {
+                z = z+20;
+                n=0;
+            }
+            if (z > canvas.height) {
+                alert('Программа выполнена успешно')
+            }
+        }
+    </script>
+</canvas>
+</html>
